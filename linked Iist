@@ -1,0 +1,197 @@
+#include<iostream>
+using namespace std;
+
+struct node
+{
+    int data;
+    struct node *next;
+};
+
+struct node *start,*ptr,*np;
+
+void creation();
+void insert_first(int item);
+void insert_last(int item);
+void insert_after();
+void insert_before();
+void Delete();
+void search();
+void  count();
+void print();
+
+int main()
+{
+
+  creation();
+    print();
+
+  insert_after();
+  print();
+
+
+
+    return 0;
+}
+
+void creation()
+{
+   int i=1,item,n;
+   cout<<"how many nodes:";
+   cin>>n;
+
+   while(i<=n)
+   {
+       cout<<"item:";
+       cin>>item;
+
+       insert_last(item);
+       i++;
+   }
+
+}
+
+void insert_first(int item)
+{
+    np=new node;
+    np->data=item;
+    np->next=start;
+    start=np;
+
+}
+
+void insert_last(int item)
+{
+    np=new node;
+    np->data=item;
+    np->next=NULL;
+
+    if(start==NULL)
+    {
+        start=np;
+    }
+    else{
+   ptr->next=np;
+    }
+      ptr=np;
+}
+
+void insert_after()
+{
+    int a,item;
+    cout<<"node item of:";
+    cin>>a;
+    cout<<"insert after item:";
+    cin>>item;
+
+    np=new node;
+    np->data=item;
+    ptr=start;
+    while(ptr->data!=a && ptr->next!=NULL){
+        ptr=ptr->next;
+    }
+
+    if(ptr->data==a)
+    {
+        np->next=ptr->next;
+        ptr->next=np;
+    }
+
+}
+void insert_before()
+{
+
+int a,item;
+    cout<<"node item of:";
+    cin>>a;
+    cout<<"insert after item:";
+    cin>>item;
+
+    np=new node;
+    np->data=item;
+    ptr=start;
+    if(start->data==a)
+    {
+        np->next=start;
+        start=np;
+    }
+    else{
+    while(ptr->data!=a && ptr->next!=NULL){
+        ptr=ptr->next;
+    }
+
+    if(ptr->data==a)
+    {
+        np->next=ptr->next;
+        ptr->next=np;
+    }
+    }
+
+
+}
+void Delete()
+{
+int item;
+cin>>item;
+
+ptr=start;
+
+while(ptr->data!=item)
+{
+    np=ptr;
+    ptr=ptr->next;
+}
+if(ptr==start)
+{
+    start=ptr->next;
+
+}
+else
+{
+    np->next=ptr->next;
+
+}
+
+
+}
+void search()
+{
+int item;
+cin>>item;
+ptr=start;
+
+while(ptr->data!=item && ptr->next!=NULL)
+{
+    ptr=ptr->next;
+}
+if(ptr->data==item)
+{
+    cout<<"found";
+}
+else
+{
+    cout<<"not found";
+}
+
+}
+void  count()
+{
+int c=0;
+ptr=start;
+while(ptr!=NULL)
+{
+    c++;
+    ptr=ptr->next;
+}
+cout<<"total count:"<<c<<endl;
+}
+void print()
+{
+  ptr=start;
+  cout<<"start->";
+  while(ptr!=NULL)
+  {
+      cout<<ptr->data<<"->";
+      ptr=ptr->next;
+  }
+cout<<"->NULL";
+}
