@@ -1,0 +1,71 @@
+#include<iostream>
+using namespace std;
+void enqueue(int x);
+void dequeue();
+int Is_full();
+int Is_empty();
+int const n=3;
+int arr[n];
+int front=0;
+int rear=0;
+int element=0;
+
+void enqueue(int x)
+{
+    if(Is_full())
+    {
+        cout<<"queue is Full"<<endl;
+    }
+    else{
+    rear=(rear+1)%n;
+    arr[rear]=x;
+    if(front==0)
+    {
+        front++;
+    }
+
+    element++;
+    cout<<"enquue is:"<<arr[rear]<<endl;
+}
+}
+int Is_full()
+{
+    return element==n;
+}
+
+void dequeue()
+{
+    if(Is_empty())
+    {
+        cout<<"queue is empty"<<endl;
+    }
+    else{
+  int x=arr[front];
+   front=(front+1)%n;
+
+
+   element--;
+
+cout<<"Dequeue is:"<<x<<endl;
+    }
+
+}
+int Is_empty()
+{
+    return element==0;
+}
+int main()
+{
+    enqueue(344);
+    enqueue(312);
+
+
+  dequeue();
+  dequeue();
+ enqueue(812);
+ enqueue(512);
+ enqueue(8192);
+ enqueue(6192);
+
+    return 0;
+}
