@@ -1,0 +1,65 @@
+#include<iostream>
+using namespace std;
+void print(int *arr,int findex,int iindex);
+void print(int *arr,int findex,int iindex)
+{
+    for(int i=findex;i<=iindex;i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+}
+void quick_sort(int *arr,int findex,int iindex);
+void quick_sort(int *arr,int findex,int iindex)
+{
+    int pivot,i,j,temp;
+    if(findex<iindex)
+    {
+        pivot=findex;
+        i=findex;
+        j=iindex;
+
+        if(i<j)
+        {
+          while(arr[i]<=arr[pivot] && i<=iindex)
+          {
+              i++;
+          }
+          while(arr[j]>arr[pivot] && j>=findex)
+          {
+              j--;
+          }
+          if(i<j)
+          {
+              temp=arr[i];
+              arr[i]=arr[j];
+              arr[j]=temp;
+          }
+        }
+        temp=arr[j];
+        arr[j]=arr[pivot];
+        arr[pivot]=temp;
+        quick_sort(arr,findex,j-1);
+        quick_sort(arr,j+1,iindex);
+
+    }
+
+
+}
+
+int main()
+{
+    int n;
+    cout<<"enter the number is:";
+    cin>>n;
+
+     int *arr=new int[n];
+
+     for(int i=0;i<n;i++)
+     {
+         cin>>arr[i];
+     }
+   quick_sort(arr,0,n-1);
+   print(arr,0,n-1);
+     return 0;
+}
