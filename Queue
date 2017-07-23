@@ -1,0 +1,85 @@
+#include<iostream>
+using namespace std;
+void Enqueue(int x);
+void Dequeue();
+void
+int Is_Full();
+int Is_empty();
+
+
+ int  front();
+int const n=6;
+int arr[n];
+
+int rear=-1;
+int frnt= -1;
+int element=0;
+
+
+void Enqueue(int x)
+{
+    if(Is_Full())
+    {
+        cout<<"queue is overflow"<<endl;
+    }
+    else
+   rear++;
+   arr[rear]=x;
+
+   if(frnt==-1)
+   {
+       frnt++;
+   }
+   element++;
+
+   cout<<"Enqueue is:"<<arr[rear]<<endl;
+
+}
+int Is_Full()
+{
+    return element==n;
+}
+int Is_empty()
+{
+    return element==0;
+}
+void Dequeue()
+{
+    if(Is_empty())
+    {
+        cout<<"Queue is empty";
+    }
+    else
+   {
+    int x=arr[frnt];
+
+    frnt++;
+    element--;
+
+    cout<<"Dequeue is:"<<x<<endl;
+
+
+}
+}
+
+int front()
+{
+    return arr[frnt];
+}
+
+
+int main()
+{
+
+Enqueue(3);
+Enqueue(8);
+Enqueue(5);
+Enqueue(2);
+Enqueue(1);
+
+
+
+
+
+    return 0;
+}
