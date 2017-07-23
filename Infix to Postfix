@@ -1,0 +1,77 @@
+#include<iostream>
+#include<stack>
+using namespace std;
+
+int priority(char x)
+{
+    switch(x)
+    {
+    case '#':
+    case '(':
+        return 1;
+
+    case '+':
+    case '-':
+        return 2;
+    case '*':
+    case '/':
+        return 3;
+    }
+}
+
+int main()
+{
+    stack<char>st;
+    st.push('#');
+
+    string infix;
+    cout<<"enter your infix:";
+    getline(cin,infix);
+    char ch,postfix[50];
+    int j=0;
+
+    for(int i=0;infix[i]!='\0';i++)
+    {
+        ch=infix[i];
+        if(ch=='(')
+        {
+            st.push(ch);
+        }
+        else if(ch==')')
+        {
+            while(st.top()!='(')
+            {
+                postfix[j++]=st.top();
+                st.pop();
+            }
+        }
+        else if(ch=='+'|| ch=='-'||ch=='*'||ch=='/')
+        {
+            while(priority(ch)<=priority(st.top()))
+            {
+                postfix[j++]=st.top();
+                st.pop();
+
+            }
+            st.push(ch);
+        }
+        else
+        {
+            postfix[j++]=ch;
+        }
+        while(st.top()!='#')
+        {
+            postfix[j++]=st.top();
+            st.pop();
+        }
+        postfix[j]='\0';
+
+        cout<<"postfix is:"<<postfix<<endl;
+    }
+
+
+
+
+
+    return 0;
+}
