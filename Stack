@@ -1,0 +1,63 @@
+#include<iostream>
+using namespace std;
+void push(int x);
+void pop();
+int Top();
+
+int const n=5;
+int arr[n];
+int top =-1;
+
+void push(int x)
+{
+    if(top>=n-1)
+    {
+        cout<<"stack full"<<endl;
+    }
+    else
+    {
+    top++;
+    arr[top]=x;
+
+    cout<<"push is:"<<arr[top]<<endl;
+    }
+
+}
+void pop()
+{
+    if(top<0)
+    {
+        cout<<"stack is empty"<<endl;
+    }
+    else{
+
+ int x=arr[top];
+  top--;
+
+   cout<<"pop is:"<<x<<endl;
+    }
+}
+int Top()
+{
+    return arr[top];
+
+}
+
+int main()
+{
+    push(2);
+    push(3);
+    push(25);
+    push(38);
+    push(22);
+    push(13);
+
+ pop();
+ pop();
+ pop();
+
+
+
+
+    return 0;
+}
