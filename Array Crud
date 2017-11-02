@@ -1,0 +1,156 @@
+#include<iostream>
+
+using namespace std;
+void print(int arr[10],int n);
+void Reverse(int arr[10], int n);
+int Insert(int arr[10],int n);
+int Delete(int arr[10],int n);
+void Search(int arr[10],int n);
+void Highest(int arr[10],int n);
+void Lowest(int arr[10], int n);
+void print(int arr[10], int n) {
+  
+	cout << "array print:" << endl;
+	for (int i = 0; i < n; i++) {
+		cout << i + 1 << "=" << arr[i] << endl;
+	}
+
+}
+
+void Reverse(int arr[10], int n) {
+
+	cout << "array Reverse print:" << endl;
+	for (int i = n - 1; i >= 0; i--) {
+		cout << i + 1 << "=" << arr[i] << endl;
+	}
+}
+
+int Insert(int arr[10], int n) {
+	int item,pos;
+	cout << "enter item number:"<<endl;
+	cin >> item;
+	cout << "enter position number:" << endl;
+	cin >> pos;
+	pos--;
+
+	for (int i = n; i >= pos; i--) {
+
+		arr[i + 1] = arr[i];
+	}
+	arr[pos] = item;
+	n++;
+	return n;
+}
+
+int Delete(int arr[10], int n) {
+
+	int pos;
+	cout << "Delete position number:"<<endl;
+	cin >> pos;
+	pos--;
+	 
+	for (int i = pos; i <= n - 1; i++) {
+
+		arr[i] = arr[i + 1];
+	}
+	n--;
+	return n;
+
+}
+
+void Search(int arr[10], int n) {
+	int item,b;
+	int flag=0;
+	cout << "search the item number:"<<endl;
+	cin >> item;
+	for (int i = 0; i < n;i++) {
+		if (arr[i] == item) {
+			flag=1;
+			b = i;
+			break;
+		}
+	}
+	if (flag==1) {
+		cout << "Found"<<"-> "<<b+1<<" number position "<<endl;
+	}
+	else {
+		cout << " not found "<<endl;
+	}
+}
+
+  void Highest(int arr[10], int n) {
+	
+	  int max = arr[0];
+	  for (int i = 0; i < n; i++) {
+		  if (arr[i]>max) {
+			  max = arr[i];
+		  }
+	  }
+      
+	  cout << "maximum number is:" << max << endl;
+
+	}
+
+  void Lowest(int arr[10], int n) {
+
+	  int min = arr[0];
+	  for (int i = 0; i < n; i++) {
+		  if (arr[i]<min) {
+			  min = arr[i];
+		  }
+	  }
+
+	  cout << "minimum number is:" << min << endl;
+
+  }
+
+int main() {
+	int n;
+	cout << "number of item :" << endl;
+	cin >> n;
+
+	int arr[10];
+	for (int i = 0; i < n; i++) {
+		cin >> arr[i];
+	}
+	int s;
+
+	cout << "press 1 -> Print\n" << "press 2 -> Insert\n" << "press 3 -> Delete\n" << "press 4 -> Search\n" << "press 5 -> Highest\n" << "press 6 -> Lowest\n" << "press 7 -> Reverse\n" << "press any key to Exit" << endl;
+
+	while (cin>>s){
+		switch (s)
+		{
+
+		case 1:
+			print(arr, n);
+			break;
+		case 2:
+			n = Insert(arr, n);
+			break;
+		case 3:
+			n = Delete(arr, n);
+			break;
+		case 4:
+			Search(arr, n);
+			break;
+		case 5:
+			Highest(arr, n);
+			break;
+		case 6:
+			Lowest(arr, n);
+			break;
+		case 7:
+			Reverse(arr, n);
+			break;
+
+		default:
+			exit(0);
+			break;
+		}
+
+
+	}
+
+	system("PAUSE");
+	return 0;
+}
