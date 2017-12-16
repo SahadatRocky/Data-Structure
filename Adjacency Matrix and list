@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+const int size =100;
+int G[size][size];
+vector<int> V[size];
+#define disconnected 0;
+#define connected 1;
+
+
+
+
+int main(){
+   int N,E;
+   cout<<"How many nodes and Edges? ";
+   cin>>N>>E;
+
+   for(int i=0;i<N;i++){
+        for(int j=0;j<N;j++){
+            G[i][j]=disconnected;
+        }
+   }
+
+   cout<<"Initialize Zero Matrix "<<endl;
+
+      for(int i=0;i<N;i++){
+        for(int j=0;j<N;j++){
+            cout<<G[i][j];
+        }
+        cout<<endl;
+   }
+    cout<<"two edge are connected u and v :"<<endl;
+     int u,v;
+     for(int i=0;i<E;i++){
+          scanf("%d %d",&u,&v);
+          V[u].push_back(v);
+          V[v].push_back(u);
+          G[u][v]=G[v][u]=connected;
+
+     }
+      cout<<"adjacency Matrix "<<endl;
+
+      for(int i=0;i<N;i++){
+        for(int j=0;j<N;j++){
+            cout<<G[i][j];
+        }
+        cout<<endl;
+   }
+
+  cout<<"adjacency list :"<<endl;
+
+    for(int i=1;i<=N;i++){
+        cout<<i<<"->";
+        for(int j=0;j<V[i].size();j++){
+            cout<<V[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+
+  return 0;
+}
