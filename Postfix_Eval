@@ -1,0 +1,97 @@
+
+
+#include<iostream>
+#include<math.h>
+
+#define BLANK ' '
+#define TAB '\t'
+#define MAX 50
+using namespace std;
+void push(long int symbol);
+long int pop();
+long int eval_post();
+int isEmpty();
+int white_space(char );
+
+char postfix[MAX];
+long int stack[MAX];
+int top;
+
+int main()
+{
+        long int value;
+        top=-1;
+        cout<<"Enter infix : ";
+        cin.get(postfix,MAX);   //24*63-3/+
+        value=eval_post();
+        cout<<"Value of expression : "<<value<<endl;
+        return 0;
+}
+
+void push(long int symbol){
+        if(top>MAX)
+        {
+                cout<<"Stack overflow"<<endl;
+
+        }else{
+        stack[++top]=symbol;
+        }
+}
+
+long int pop(){
+        if( isEmpty() )
+        {
+                cout<<"Stack underflow"<<endl;
+
+        }else{
+        return (stack[top--]);
+        }
+
+}
+int isEmpty(){
+        if(top==-1)
+                return 1;
+        else
+                return 0;
+}
+
+int white_space(char symbol){
+        if( symbol == BLANK || symbol == TAB )
+                return 1;
+        else
+                return 0;
+}
+
+long int eval_post(){
+        long int a,b,temp,result;
+        unsigned int i;
+
+        for(i=0;i<postfix[i]!='\0';i++)
+        {
+                if(postfix[i]<='9' && postfix[i]>='0')
+                        push(postfix[i]-'0');
+                else
+                {
+                        a=pop();
+                        b=pop();
+                        switch(postfix[i])
+                        {
+                        case '+':
+                                temp=b+a; break;
+                        case '-':
+                                temp=b-a;break;
+                        case '*':
+                                temp=b*a;break;
+                        case '/':
+                                temp=b/a;break;
+                        case '%':
+                                temp=b%a;break;
+                        case '^':
+                                temp=pow(b,a);
+                        }
+                        push(temp);
+                }
+        }
+        result=pop();
+        return result;
+}
