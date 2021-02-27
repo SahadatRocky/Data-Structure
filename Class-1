@@ -1,0 +1,74 @@
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+ class Student{
+        int id;
+        int credit;
+        float CGPA;
+
+   public:
+       void setId(int id){
+            this->id = id;
+       }
+       int getId(){
+         return this->id;
+       }
+       void setCredit(int credit){
+            this->credit = credit;
+       }
+       int getCredit(){
+         return this->credit;
+       }
+       void setCgpa(float cgpa){
+            this->CGPA = cgpa;
+       }
+       float getCgpa(){
+         return this->CGPA;
+       }
+
+
+
+
+};
+
+int main(){
+
+    Student s[10];
+    int id,credit;
+    float cgpa;
+    int len = sizeof(s)/sizeof(s[0]);
+    //cout<<len<<endl;
+     for(int i=0;i<len;i++){
+        Student si;
+        cout<<"Enter Student Id: ";
+        cin>>id;
+        si.setId(id);
+        cout<<"Enter Student Credit: ";
+        cin>>credit;
+        si.setCredit(credit);
+        cout<<"Enter Student CGPA: ";
+        cin>>cgpa;
+        si.setCgpa(cgpa);
+        s[i] = si;
+        cout<<endl;
+    }
+
+    cout<<"ID of Students who have more then 3.75 CGPA : ";
+    for(int i=0;i<len;i++){
+       if(s[i].getCgpa()> 3.75){
+           cout<<s[i].getId()<<" ";
+       }
+    }
+    cout<<endl;
+    cout<<"ID of Students who have completed more the 50 credit : ";
+    for(int i=0;i<len;i++){
+       if(s[i].getCredit()> 50){
+           cout<<s[i].getId()<<" ";
+       }
+    }
+    cout<<endl;
+   return 0;
+}
