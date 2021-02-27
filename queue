@@ -1,0 +1,130 @@
+
+
+#include <iostream>
+#define MAXSIZE 5
+
+using namespace std;
+
+class Queue {
+    private:
+        int q[MAXSIZE];
+        int rear;
+        int front;
+        int element=0;
+
+    public:
+
+        Queue() {
+            rear = -1;
+            front = -1;
+        }
+        void enqueue(int x)
+        {
+            if(isQueueFull())
+            {
+                cout<<"queue is overflow"<<endl;
+            }
+            else
+               rear++;
+               q[rear]= x;
+
+               if(front==-1)
+               {
+                   front++;
+               }
+               element++;
+              // cout<<"Enqueue is:"<<q[rear]<<endl;
+        }
+        int isQueueFull()
+        {
+            return element >= MAXSIZE;
+        }
+        int isQueueEmpty()
+        {
+            return element == 0;
+        }
+        int dequeue()
+        {
+            int x;
+            if(isQueueEmpty())
+            {
+                cout<<"Queue is empty";
+            }
+            else
+           {
+            x = q[front];
+            front++;
+            element--;
+           // cout<<"Dequeue is:"<<x<<endl;
+           }
+           return x;
+        }
+
+        int frontElement()
+        {
+            return q[front];
+        }
+
+        int queueSize()
+        {
+                //your code here
+           return element;
+               //return current allocated size of the Stack
+        }
+
+        void display_queue()
+        {
+            //your code here
+          for(int i=element-1;i>=0;i--)
+             cout<< "\t\t"<<q[i] <<endl;
+          // display all elements of Stack from top to bottom.
+        }
+};
+
+int main() {
+    int option,n, value;
+     Queue q;
+    cout<<"C++ program to implement Queue operations\n";
+    do
+    {
+        cout<<"\n 1.Insert an element in Queue";
+        cout<<"\n 2.Delete an element from Queue";
+        cout<<"\n 3.Display Queue";
+        cout<<"\n 4.Display current Queue size ";
+        cout<<"\n 5.Display top element ";
+        cout<<"\n 6.Exit";
+        cout<<"\n Enter your choice: ";
+        cin>>option;
+        switch(option)
+        {
+        case 1:
+            cout<<" Insert an element in Queue: ";
+            cin>>n;
+            q.enqueue(n);
+            break;
+        case 2:
+            value = q.dequeue();
+            if(value != NULL)
+            cout<<" Dequeue element is: "<<value<<endl;
+            break;
+        case 3:
+            q.display_queue();
+            break;
+        case 4:
+
+            value = q.queueSize();
+            cout<<" Display current Queue size: "<<value<<endl;
+            break;
+        case 5:
+            value = q.frontElement();
+            if(value != NULL)
+                cout<<"\n\tCurrent top element is "<<value<<endl;
+            break;
+        case 6:
+            return 0;
+        }
+    }
+    while(option!=6);
+
+    return 0;
+}
