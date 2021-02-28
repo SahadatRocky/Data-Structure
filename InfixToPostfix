@@ -13,7 +13,7 @@ int priority(char symbol);
 int isEmpty();
 int white_space(char );
 
-char infix[MAX];
+char infix[MAX],,postfix[MAX];
 long int stack[MAX];
 int top;
 
